@@ -1,6 +1,8 @@
 /*
  * Integrantes:
- * Rafael Sperandio Scheiner - RA :12014569
+ * Rafael Sperandio Scheiner - RA:12014569
+ * Brunno Vega		     - RA:13144175
+ * Vitor Borela 	     - RA:14056626
  * 
  */
 
@@ -14,7 +16,9 @@
 int main (void)
 {
   char operation;
-  
+  char nome;
+  int linhas,colunas;
+  lista *slot = NULL;
   do{
     printf("CM-Criar Matriz");
     printf("DM-Destruir Matriz");
@@ -34,6 +38,8 @@ int main (void)
     switch (operation)
     {
       case CM:
+	scanf("%s %i %i",&nome,&linhas,&colunas);
+	criarLista(slot,nome,linhas,colunas);
 	break;
       case DM:
 	break;

@@ -7,7 +7,7 @@ typedef struct matriz Matriz;
 /* Funcoes */
 
 //CM
-int criarMatriz(Matriz mat, int linhas, int colunas);
+float **criarMatriz(int linhas, int colunas);
 //DM
 int destroirMatriz(Matriz mat);
 //IM

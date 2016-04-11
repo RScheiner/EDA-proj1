@@ -4,3 +4,8 @@
 /* tipo exportado */
 
 typedef struct lista Lista;
+
+/* Funcoes */
+void criarLista(lista **listaMatrizes,char nome,int linha,int coluna);
+
+void inserir(lista **listaMatrizes, lista *novo,int linha,int coluna);

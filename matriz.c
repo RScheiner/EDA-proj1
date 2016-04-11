@@ -5,18 +5,28 @@
 #include "matriz.h"
 
 //matriz ortogonais (ver material)
-struct matriz{
+
+/*struct matriz{
   int valor
   matriz *lado, *baixo;
-};
+};*/
 
 
 /* Funcoes */
 
 //CM
-int criarMatriz(Matriz mat, int linhas, int colunas)
+float **criarMatriz(int linhas, int colunas)
 {
+  float **Matriz;
+  int i,j;
+  Matriz = malloc(linhas * sizeof(int *));
+  for(i=0;i<linhas;i++)
+  {
+    Matriz[i]= malloc(colunas* sizeof(int));
+  }
+  return Matriz;
 }
+
 //DM
 int destroirMatriz(Matriz mat)
 {

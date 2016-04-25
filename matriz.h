@@ -8,8 +8,9 @@ typedef struct matriz Matriz;
 
 //CM
 float **criarMatriz(int linhas, int colunas);
-//DM
-int destroirMatriz(Matriz mat);
+
+//DM-> na lista.H
+
 //IM
 int imprimirMatriz(Matriz mat);
 //AE

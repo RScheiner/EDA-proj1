@@ -17,7 +17,7 @@ int main (void)
 {
   char operation;
   char nome;
-  int linhas,colunas;
+  int linhas=0,colunas=0,ret=0;
   lista *slot = NULL;
   do{
     printf("CM-Criar Matriz");
@@ -42,8 +42,31 @@ int main (void)
 	criarLista(slot,nome,linhas,colunas);
 	break;
       case DM:
+	scanf("%s",&nome);
+	ret=destroirMatriz(&slot,nome);
+	if(ret==0)
+	{
+	  printf("ERRO");
+	}
+	else
+	{
+	  if(ret==1)
+	  {
+	     printf("OK");
+	  }
+	  else
+	  {
+	    printf("ERRO");
+	  }
+	}
 	break;
       case IM:
+	//if para o erro
+	ret=imprimirMatriz(slot,nome);
+	if(ret =0)
+	{
+	  printf("ERRO");
+	}
 	break;
       case AE:
 	break;

@@ -9,3 +9,6 @@ typedef struct lista Lista;
 void criarLista(lista **listaMatrizes,char nome,int linha,int coluna);
 
 void inserir(lista **listaMatrizes, lista *novo,int linha,int coluna);
+
+//DM
+int destroirMatriz(Matriz **mat,char nome);

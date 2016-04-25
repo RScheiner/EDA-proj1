@@ -19,21 +19,40 @@ float **criarMatriz(int linhas, int colunas)
 {
   float **Matriz;
   int i,j;
-  Matriz = malloc(linhas * sizeof(int *));
+  Matriz = malloc(colunas * sizeof(int *));
   for(i=0;i<linhas;i++)
   {
-    Matriz[i]= malloc(colunas* sizeof(int));
+    Matriz[i]= malloc(linhas* sizeof(int));
   }
   return Matriz;
 }
 
-//DM
-int destroirMatriz(Matriz mat)
-{
-}
+//DM-> na lista.C
+
 //IM
-int imprimirMatriz(Matriz mat)
+int imprimirMatriz(lista mat, char nome)
 {
+  int auxI=0, auxJ=0;
+  if(!mat)
+    {
+      return 0;
+    }
+    else
+      {
+	while(!mat && (strcmp((mat->nome),nome)==0))
+	  {
+	    mat=mat->prox;
+	  }
+	  for(auxI;auxI<mat->i;auxI++)
+	  {
+	    for(auxJ;auxJ<mat->j;auxJ++)
+	    {
+	      printf(" %4.2f ",mat->end[auxI][auxJ]);
+	    }
+	    printf("\n");
+	  }
+	  return 1;
+      }
 }
 //AE
 int atribuirElemento(Matriz mat,int linha, int coluna, int valor)

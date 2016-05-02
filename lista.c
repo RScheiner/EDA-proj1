@@ -12,16 +12,33 @@ struct lista{
   lista *prox;
 };
 
-void criarLista(lista **listaMatrizes,char nome,int linha,int coluna)
+int criarLista(lista **listaMatrizes,char nome,int linha,int coluna)
 {
+  int ret;
+  
+  if(linhas > 50 || colunas > 50)
+  {
+    return 0;
+  }
+  else
+  {
   lista *novo = (lista *)malloc(sizeof(lista));
   strcpy(novo->nome,nome);
   novo->i=linhas;
   novo->j=colunas;
-  inserir(listaMatrizes,novo,linha,coluna);
+  
+  ret = inserir(listaMatrizes,novo,linha,coluna);
+    if(ret == 1)
+    {
+      return 1;
+    }
+    else
+    {
+      return 0;
+    }
+  }
 }
-
-void inserir(lista **listaMatrizes, lista *novo,int linha,int coluna)
+int inserir(lista **listaMatrizes, lista *novo,int linha,int coluna)
 {
   lista *atual = *lista;
   lista *anterior = NULL;
@@ -31,21 +48,30 @@ void inserir(lista **listaMatrizes, lista *novo,int linha,int coluna)
     (*listaMatrizes)=novo;
     novo->prox=NULL;
     (*listaMatrizes)->end = criarMatriz(linha,coluna);
+    return 1;
     }
   else
     {  
-      while((atual))
+      while((atual) && (strcmp(atual->nome,novo->nome)!=0))
 	{
 	  anterior=atual;
 	  atual=atual->prox;
 	}
-      if(!atual) //insere final
+      if(strcmp(atual->nome,novo->nome)==0)
 	{
-	  anterior->prox = novo;
-	  novo->prox= NULL;
-	  novo->end = criarMatriz(linha,coluna);
+	  return 0;
 	}
+	else
+	  {
+	    if(!atual) //insere final
+	      {
+		anterior->prox = novo;
+		novo->prox= NULL;
+		novo->end = criarMatriz(linha,coluna);
+		return 1;
+	      }
    
+	  }
     }
 }
 

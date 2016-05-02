@@ -11,23 +11,32 @@ float **criarMatriz(int linhas, int colunas);
 
 //DM-> na lista.H
 
-//IM
-int imprimirMatriz(Matriz mat);
+//IM - OK
+int imprimirMatriz(lista mat);
+
 //AE
-int atribuirElemento(Matriz mat,int linha, int coluna, int valor);
+int atribuirElemento(lista mat,char nome,int linha, int coluna, int valor);
+
 //AL
-int atribruirLinha(Matriz mat,int linha, int valor);
+int atribruirLinha(lista mat,int linha, int valor);
+
 //AC
-int atribuirColuina(Matriz mat,int coluna, int valor);
+int atribuirColuina(lista mat,int coluna, int valor);
+
 //TM
-int transporMatriz(Matriz mat, Matriz resposta);
+int transporMatriz(lista mat, lista resposta);
+
 //SM
-int somarMatrizes(Matriz mat1, Matriz mat2, Matriz resposta);
+int somarMatrizes(lista mat1, lista mat2, lista resposta);
+
 //DV
-int dividirMatrizes(Matriz mat1, Matriz mat2, Matriz resposta);
+int dividirMatrizes(lista mat1, lista mat2, lista resposta);
+
 //MM
-int multiplicarMatrizes(Matriz mat1, Matriz mat2, Matriz resposta);
+int multiplicarMatrizes(lista mat1, lista mat2, lista resposta);
+
 //ME
-int multiplicarElementosMatrizes(Matriz mat1, Matriz mat2, Matriz resposta);
+int multiplicarElementosMatrizes(lista mat1, lista mat2, lista resposta);
+
 
 #endif

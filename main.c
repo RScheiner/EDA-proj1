@@ -18,6 +18,7 @@ int main (void)
   char operation;
   char nome;
   int linhas=0,colunas=0,ret=0;
+  float val = 0;
   lista *slot = NULL;
   do{
     printf("CM-Criar Matriz");
@@ -39,7 +40,15 @@ int main (void)
     {
       case CM:
 	scanf("%s %i %i",&nome,&linhas,&colunas);
-	criarLista(slot,nome,linhas,colunas);
+	ret = criarLista(slot,nome,linhas,colunas);
+	if(ret = 0)
+	{
+	  printf("ERRO");
+	}
+	else
+	{
+	  printf("OK");
+	}
 	break;
       case DM:
 	scanf("%s",&nome);
@@ -61,28 +70,60 @@ int main (void)
 	}
 	break;
       case IM:
-	//if para o erro
+	
 	ret=imprimirMatriz(slot,nome);
 	if(ret =0)
 	{
 	  printf("ERRO");
 	}
 	break;
+	
       case AE:
+	scanf("%s %i %i %f",&nome,&linhas,&colunas,&val);
+	ret=atribuirElemento(&slot,nome,linhas,colunas,val);
+	if(ret = 0)
+	{
+	  printf("ERRO");
+	}
+	else
+	{
+	  printf("OK");
+	}
 	break;
       case AL:
+	if(ret = 0)
+	{
+	  printf("ERRO");
+	}
+	else
+	{
+	  printf("OK");
+	}
 	break;
       case AC:
+	if(ret = 0)
+	{
+	  printf("ERRO");
+	}
+	else
+	{
+	  printf("OK");
+	}
 	break;
       case TM:
+	//if para o erro
 	break;
       case SM:
+	//if para o erro
 	break;
       case DV:
+	//if para o erro
 	break;
       case MM:
+	//if para o erro
 	break;
       case ME:
+	//if para o erro
 	break;
       case FE:
 	break;

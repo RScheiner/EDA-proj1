@@ -6,9 +6,10 @@
 typedef struct lista Lista;
 
 /* Funcoes */
-void criarLista(lista **listaMatrizes,char nome,int linha,int coluna);
+//CM - OK
+int criarLista(lista **listaMatrizes,char nome,int linha,int coluna);
 
-void inserir(lista **listaMatrizes, lista *novo,int linha,int coluna);
+int inserir(lista **listaMatrizes, lista *novo,int linha,int coluna);
 
-//DM
+//DM - OK
 int destroirMatriz(Matriz **mat,char nome);

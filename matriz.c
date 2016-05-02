@@ -19,10 +19,10 @@ float **criarMatriz(int linhas, int colunas)
 {
   float **Matriz;
   int i,j;
-  Matriz = malloc(colunas * sizeof(int *));
+  Matriz = malloc(colunas * sizeof(float *));
   for(i=0;i<linhas;i++)
   {
-    Matriz[i]= malloc(linhas* sizeof(int));
+    Matriz[i]= malloc(linhas* sizeof(float));
   }
   return Matriz;
 }
@@ -55,34 +55,59 @@ int imprimirMatriz(lista mat, char nome)
       }
 }
 //AE
-int atribuirElemento(Matriz mat,int linha, int coluna, int valor)
+int atribuirElemento(lista **mat,char nome,int linha, int coluna, int valor)
 {
+  lista *atual=*mat;
+  lista *anterior=NULL;
+
+  if(!(*mat))
+  {
+    return 0;
+  }
+    else
+      {
+	while((atual) && (strcmp(atual->nome,nome)!=0))
+	  {
+	    anterior=atual;
+	    atual=atual->prox;
+	  }
+	  if((atual->i < linha)||(atual->j < coluna))
+	    {
+	      return 0;
+	    }
+	    else
+	    {
+	      atual->end[linha][coluna]=valor;
+	      return 1;
+	    }
+	 return 0;
+      }
 }
 //AL
-int atribruirLinha(Matriz mat,int linha, int valor)
+int atribruirLinha(lista mat,int linha, int valor)
 {
 }
 //AC
-int atribuirColuina(Matriz mat,int coluna, int valor)
+int atribuirColuina(lista mat,int coluna, int valor)
 {
 }
 //TM
-int transporMatriz(Matriz mat, Matriz resposta)
+int transporMatriz(lista mat, lista resposta)
 {
 }
 //SM
-int somarMatrizes(Matriz mat1, Matriz mat2, Matriz resposta)
+int somarMatrizes(lista mat1, lista mat2, lista resposta)
 {
 }
 //DV
-int dividirMatrizes(Matriz mat1, Matriz mat2, Matriz resposta)
+int dividirMatrizes(lista mat1, lista mat2, lista resposta)
 {
 }
 //MM
-int multiplicarMatrizes(Matriz mat1, Matriz mat2, Matriz resposta)
+int multiplicarMatrizes(lista mat1, lista mat2, lista resposta)
 {
 }
 //ME
-int multiplicarElementosMatrizes(Matriz mat1, Matriz mat2, Matriz resposta)
+int multiplicarElementosMatrizes(lista mat1, lista mat2, lista resposta)
 {
 }

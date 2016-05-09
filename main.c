@@ -17,7 +17,8 @@ int main (void)
 {
   char operation;
   char nome;
-  int linhas=0,colunas=0,ret=0;
+  char valores[50];
+  int linhas=0,colunas=0,ret=0,i=0,j=0,cont=0;
   float val = 0;
   lista *slot = NULL;
   do{
@@ -33,6 +34,7 @@ int main (void)
     printf("MM-Multiplicar uma Matriz por outra");
     printf("ME-Multiplicar uma matriz por outra (elemento a elemento) ");
     printf("FE-Finaliza a Execução");
+	__fpurge(stdin);
         fgets(operation,32,stdin);
 	
 	
@@ -91,6 +93,16 @@ int main (void)
 	}
 	break;
       case AL:
+	scanf("%s %i", &nome, &linhas);
+	for(i=0;i<51;i++)
+	{
+	  __fpurge(stdin);
+	  scanf("%s",valores[i]);
+	  if(strcmp(valores[i],"#")==0)
+	    break;
+	  cont++;
+	}
+	ret=atribruirLinha(slot,nome,linhas,valores,cont);
 	if(ret = 0)
 	{
 	  printf("ERRO");
@@ -101,6 +113,16 @@ int main (void)
 	}
 	break;
       case AC:
+	scanf("%s %i", &nome, &colunas);
+	for(i=0;i<51;i++)
+	{
+	  __fpurge(stdin);
+	  scanf("%s",valores[i]);
+	  if(strcmp(valores[i],"#")==0)
+	    break;
+	  cont++;
+	}
+	ret=atribuirColuna(slot,nome,colunas,valores,cont();
 	if(ret = 0)
 	{
 	  printf("ERRO");

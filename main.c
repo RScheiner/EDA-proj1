@@ -16,7 +16,7 @@
 int main (void)
 {
   char operation;
-  char nome;
+  char nome,nomeResultado;
   char valores[50];
   int linhas=0,colunas=0,ret=0,i=0,j=0,cont=0;
   float val = 0;
@@ -133,7 +133,12 @@ int main (void)
 	}
 	break;
       case TM:
-	//if para o erro
+	scanf("%s %s",&nome,&nomeResultado);
+	ret=transporMatriz(slot,nome,nomeResultado);
+	if(ret = 0)
+	{
+	  printf("ERRO");
+	}
 	break;
       case SM:
 	//if para o erro

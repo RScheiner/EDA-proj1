@@ -169,8 +169,33 @@ int atribuirColuna(lista **mat,char nome,int coluna, char valores,int var)
   }
 }
 //TM
-int transporMatriz(lista mat, lista resposta)
+int transporMatriz(lista *mat,char nome,char nomeResultado)
 {
+  lista *atual=mat;
+  int i,j;
+  if(!(*mat))
+  {
+    return 0;
+  }
+  else
+  {
+    while(atual && strcmp(atual->nome,nome) !=0 )
+    {
+      atual=atual->prox;
+    }
+    lista *novo = (lista *)malloc(sizeof(lista));
+    strcpy(novo->nome,nome);
+    novo->i= atual->j;
+    novo->j= atual->i;
+    novo->end=criarMatriz(atual->j,atual->i);
+    for(i=0;i<(atual->i);i++)
+    {
+      for(j=0;j<(atual->j);j++)
+      {
+	novo->end[j][i]=atual->end[i][j];
+      }
+    }
+  }
 }
 //SM
 int somarMatrizes(lista mat1, lista mat2, lista resposta)

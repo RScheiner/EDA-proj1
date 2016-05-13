@@ -12,7 +12,7 @@ float **criarMatriz(int linhas, int colunas);
 //DM-> na lista.H
 
 //IM - OK
-int imprimirMatriz(lista mat);
+int imprimirMatriz(lista *mat);
 
 //AE
 int atribuirElemento(lista **mat,char nome,int linha, int coluna, int valor);
@@ -27,17 +27,17 @@ int atribuirColuna(lista **mat,char nome,int coluna, char valores,int var);
 int transporMatriz(lista *mat,char nome,char nomeResultado);
 
 //SM
-int somarMatrizes(lista mat1, lista mat2, lista resposta);
+int somarMatrizes(lista *mat,char nome,char nome2,char nomeResultado);
 
 //DV
-int dividirMatrizes(lista mat1, lista mat2, lista resposta);
+int dividirMatrizes(lista *mat,char nome,char nome2,char nomeResultado);
 
 //MM
-int multiplicarMatrizes(lista mat1, lista mat2, lista resposta);
+int multiplicarMatrizes(lista *mat,char nome,char nome2,char nomeResultado);
 
 //ME
-int multiplicarElementosMatrizes(lista mat1, lista mat2, lista resposta);
+int multiplicarElementosMatrizes(lista *mat,char nome,char nome2,char nomeResultado);
 
 /* Funcoes Aux*/
-lista procuraMat(lista mat,char nome);
+lista procuraMat(lista *mat,char nome);
 #endif

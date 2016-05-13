@@ -113,7 +113,7 @@ int atribruirLinha(lista **mat,char nome,int linha, char valores,int var)
     {
       atual=atual->prox;
     }
-    if(var < atual->j)
+    if(var > atual->j)
     {
       return 0;
     }
@@ -148,7 +148,7 @@ int atribuirColuna(lista **mat,char nome,int coluna, char valores,int var)
     {
       atual=atual->prox;
     }
-    if(var < atual->i)
+    if(var > atual->i)
     {
       return 0;
     }
@@ -172,7 +172,7 @@ int atribuirColuna(lista **mat,char nome,int coluna, char valores,int var)
 int transporMatriz(lista *mat,char nome,char nomeResultado)
 {
   lista *atual=mat;
-  int i,j;
+  int i,j,ret;
   if(!(*mat))
   {
     return 0;
@@ -184,7 +184,7 @@ int transporMatriz(lista *mat,char nome,char nomeResultado)
       atual=atual->prox;
     }
     lista *novo = (lista *)malloc(sizeof(lista));
-    strcpy(novo->nome,nome);
+    strcpy(novo->nome,nomeResultado);
     novo->i= atual->j;
     novo->j= atual->i;
     novo->end=criarMatriz(atual->j,atual->i);
@@ -195,23 +195,161 @@ int transporMatriz(lista *mat,char nome,char nomeResultado)
 	novo->end[j][i]=atual->end[i][j];
       }
     }
+    ret = inserir(novo,nomeResultado);
+    return ret;
   }
 }
 //SM
-int somarMatrizes(lista mat1, lista mat2, lista resposta)
+int somarMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
 {
+  lista *m1, *m2;
+  int i,j,ret;
+  if(!(*mat))
+  {
+    return 0;
+  }
+  else
+  {
+  *m1=procuraMat(mat,nome);
+  *m2=procuraMat(mat,nome2);
+    if(m1->i != m2->i || m1->j != m2->j)
+    {
+      return 0;
+    }
+    else
+    {
+    lista *novo = (lista *)malloc(sizeof(lista));
+    strcpy(novo->nome,nomeResultado);
+    novo->i= m1->i;
+    novo->j= m1->j;
+    novo->end=criarMatriz(m1->i,m1->j);
+      for(i=0;i<(m1->i);i++)
+      {
+        for(j=0;j<(m1->j);j++)
+	{
+	  novo->end[i][j]= m1->end[i][j]+m2->end[i][j];
+        }
+      }
+      ret=inserir(novo,nomeResultado);
+      return ret;
+    }
+  }
 }
 //DV
-int dividirMatrizes(lista mat1, lista mat2, lista resposta)
+int dividirMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
 {
+  lista *m1, *m2;
+  int i,j,ret;
+  if(!(*mat))
+  {
+    return 0;
+  }
+  else
+  {
+  *m1=procuraMat(mat,nome);
+  *m2=procuraMat(mat,nome2);
+    if(m1->i != m2->i || m1->j != m2->j)
+    {
+      return 0;
+    }
+    else
+    {
+    lista *novo = (lista *)malloc(sizeof(lista));
+    strcpy(novo->nome,nomeResultado);
+    novo->i= m1->i;
+    novo->j= m1->j;
+    novo->end=criarMatriz(m1->i,m1->j);
+      for(i=0;i<(m1->i);i++)
+      {
+        for(j=0;j<(m1->j);j++)
+	{
+	  if(m2[i][j] != 0)
+	  {
+	  novo->end[i][j]= m1->end[i][j]/m2->end[i][j];
+	  }
+	  else
+	  {
+	    novo->end[i][j]=0;
+	  }
+        }
+      }
+      ret=inserir(novo,nomeResultado);
+      return ret;
+    }
+  }
 }
 //MM
-int multiplicarMatrizes(lista mat1, lista mat2, lista resposta)
+int multiplicarMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
 {
+  lista *m1, *m2;
+  int i,j,n,ret;
+  if(!(*mat))
+  {
+    return 0;
+  }
+  else
+  {
+  *m1=procuraMat(mat,nome);
+  *m2=procuraMat(mat,nome2);
+    if(m1->i != m2->j)
+    {
+    return 0;
+    }
+    else
+    {
+    lista *novo = (lista *)malloc(sizeof(lista));
+    strcpy(novo->nome,nomeResultado);
+    novo->i= m1->i;
+    novo->j= m1->j;
+    novo->end=criarMatriz(m1->i,m2->j);
+       for(i=0;i< m1->i;i++)
+       {
+        for(j=0;j< m2->j;j++)
+	{
+            for(n=0;n<m1->j;n++)
+	    {
+                novo->end[i][j]= novo->end[i][j] + m1->end[i][n] * m2->end[n][j];
+            }
+        }
+       }
+    }
+  }
 }
 //ME
-int multiplicarElementosMatrizes(lista mat1, lista mat2, lista resposta)
+int multiplicarElementosMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
 {
+  lista *m1, *m2;
+  int i,j,ret;
+  if(!(*mat))
+  {
+    return 0;
+  }
+  else
+  {
+  *m1=procuraMat(mat,nome);
+  *m2=procuraMat(mat,nome2);
+    if(m1->i != m2->i || m1->j != m2->j)
+    {
+      return 0;
+    }
+    else
+    {
+    lista *novo = (lista *)malloc(sizeof(lista));
+    strcpy(novo->nome,nomeResultado);
+    novo->i= m1->i;
+    novo->j= m1->j;
+    novo->end=criarMatriz(m1->i,m1->j);
+      for(i=0;i<(m1->i);i++)
+      {
+        for(j=0;j<(m1->j);j++)
+	{
+	  novo->end[i][j]= m1->end[i][j]*m2->end[i][j];
+        }
+      }
+      ret=inserir(novo,nomeResultado);
+      return ret;
+    }
+  }
 }
 
 /* Funcoes Aux*/

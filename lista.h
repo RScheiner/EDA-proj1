@@ -9,7 +9,7 @@ typedef struct lista Lista;
 //CM - OK
 int criarLista(lista **listaMatrizes,char nome,int linha,int coluna);
 
-int inserir(lista **listaMatrizes, lista *novo,int linha,int coluna);
+int inserir(lista **listaMatrizes, lista *novo);
 
 //DM - OK
 int destroirMatriz(Matriz **mat,char nome);

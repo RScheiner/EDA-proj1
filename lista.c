@@ -27,7 +27,7 @@ int criarLista(lista **listaMatrizes,char nome,int linha,int coluna)
   novo->i=linhas;
   novo->j=colunas;
   novo->end = criarMatriz(linha,coluna);
-  ret = inserir(listaMatrizes,novo,linha,coluna);
+  ret = inserir(listaMatrizes,novo);
     if(ret == 1)
     {
       return 1;
@@ -38,7 +38,7 @@ int criarLista(lista **listaMatrizes,char nome,int linha,int coluna)
     }
   }
 }
-int inserir(lista **listaMatrizes, lista *novo,int linha,int coluna)
+int inserir(lista **listaMatrizes, lista *novo)
 {
   lista *atual = *lista;
   lista *anterior = NULL;

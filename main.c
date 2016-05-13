@@ -3,7 +3,6 @@
  * Rafael Sperandio Scheiner - RA:12014569
  * Brunno Vega		     - RA:13144175
  * Vitor Borela 	     - RA:14056626
- * 
  */
 
 #include <stdio.h>
@@ -16,7 +15,7 @@
 int main (void)
 {
   char operation;
-  char nome,nomeResultado;
+  char nome,nome2,nomeResultado;
   char valores[50];
   int linhas=0,colunas=0,ret=0,i=0,j=0,cont=0;
   float val = 0;
@@ -102,7 +101,7 @@ int main (void)
 	    break;
 	  cont++;
 	}
-	ret=atribruirLinha(slot,nome,linhas,valores,cont);
+	ret=atribruirLinha(&slot,nome,linhas,valores,cont);
 	if(ret = 0)
 	{
 	  printf("ERRO");
@@ -122,7 +121,7 @@ int main (void)
 	    break;
 	  cont++;
 	}
-	ret=atribuirColuna(slot,nome,colunas,valores,cont();
+	ret=atribuirColuna(&slot,nome,colunas,valores,cont();
 	if(ret = 0)
 	{
 	  printf("ERRO");
@@ -141,16 +140,52 @@ int main (void)
 	}
 	break;
       case SM:
-	//if para o erro
+	scanf("%s %s %s",&nome,&nome2,&nomeResultado);
+	ret=somarMatrizes(slot,nome,nome2,nomeResultado);
+	if(ret = 0)
+	{
+	  printf("ERRO");
+	}
+	else
+	{
+	  printf("OK");
+	}
 	break;
       case DV:
-	//if para o erro
+	scanf("%s %s %s",&nome,&nome2,&nomeResultado);
+	ret=dividirMatrizes(slot,nome,nome2,nomeResultado);
+	if(ret = 0)
+	{
+	  printf("ERRO");
+	}
+	else
+	{
+	  printf("OK");
+	}
 	break;
       case MM:
-	//if para o erro
+	scanf("%s %s %s",&nome,&nome2,&nomeResultado);
+	ret=multiplicarMatrizes(slot,nome,nome2,nomeResultado);
+	if(ret = 0)
+	{
+	  printf("ERRO");
+	}
+	else
+	{
+	  printf("OK");
+	}
 	break;
       case ME:
-	//if para o erro
+	scanf("%s %s %s",&nome,&nome2,&nomeResultado);
+	ret=multiplicarElementosMatrizes(slot,nome,nome2,nomeResultado);
+	if(ret = 0)
+	{
+	  printf("ERRO");
+	}
+	else
+	{
+	  printf("OK");
+	}
 	break;
       case FE:
 	break;

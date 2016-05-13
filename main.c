@@ -19,7 +19,7 @@ int main (void)
   char valores[50];
   int linhas=0,colunas=0,ret=0,i=0,j=0,cont=0;
   float val = 0;
-  lista *slot = NULL;
+  Lista *slot = NULL;
   do{
     printf("CM-Criar Matriz");
     printf("DM-Destruir Matriz");
@@ -39,7 +39,7 @@ int main (void)
 	
     switch (operation)
     {
-      case CM:
+      case 'CM':
 	scanf("%s %i %i",&nome,&linhas,&colunas);
 	ret = criarLista(slot,nome,linhas,colunas);
 	if(ret = 0)
@@ -51,7 +51,7 @@ int main (void)
 	  printf("OK");
 	}
 	break;
-      case DM:
+      case 'DM':
 	scanf("%s",&nome);
 	ret=destroirMatriz(&slot,nome);
 	if(ret==0)
@@ -70,7 +70,7 @@ int main (void)
 	  }
 	}
 	break;
-      case IM:
+      case 'IM':
 	
 	ret=imprimirMatriz(slot,nome);
 	if(ret =0)
@@ -79,7 +79,7 @@ int main (void)
 	}
 	break;
 	
-      case AE:
+      case 'AE':
 	scanf("%s %i %i %f",&nome,&linhas,&colunas,&val);
 	ret=atribuirElemento(&slot,nome,linhas,colunas,val);
 	if(ret = 0)
@@ -91,7 +91,7 @@ int main (void)
 	  printf("OK");
 	}
 	break;
-      case AL:
+      case 'AL':
 	scanf("%s %i", &nome, &linhas);
 	for(i=0;i<51;i++)
 	{
@@ -111,7 +111,7 @@ int main (void)
 	  printf("OK");
 	}
 	break;
-      case AC:
+      case 'AC':
 	scanf("%s %i", &nome, &colunas);
 	for(i=0;i<51;i++)
 	{
@@ -121,7 +121,7 @@ int main (void)
 	    break;
 	  cont++;
 	}
-	ret=atribuirColuna(&slot,nome,colunas,valores,cont();
+	ret=atribuirColuna(&slot,nome,colunas,valores,cont);
 	if(ret = 0)
 	{
 	  printf("ERRO");
@@ -131,7 +131,7 @@ int main (void)
 	  printf("OK");
 	}
 	break;
-      case TM:
+      case 'TM':
 	scanf("%s %s",&nome,&nomeResultado);
 	ret=transporMatriz(slot,nome,nomeResultado);
 	if(ret = 0)
@@ -139,7 +139,7 @@ int main (void)
 	  printf("ERRO");
 	}
 	break;
-      case SM:
+      case 'SM':
 	scanf("%s %s %s",&nome,&nome2,&nomeResultado);
 	ret=somarMatrizes(slot,nome,nome2,nomeResultado);
 	if(ret = 0)
@@ -151,7 +151,7 @@ int main (void)
 	  printf("OK");
 	}
 	break;
-      case DV:
+      case 'DV':
 	scanf("%s %s %s",&nome,&nome2,&nomeResultado);
 	ret=dividirMatrizes(slot,nome,nome2,nomeResultado);
 	if(ret = 0)
@@ -163,7 +163,7 @@ int main (void)
 	  printf("OK");
 	}
 	break;
-      case MM:
+      case 'MM':
 	scanf("%s %s %s",&nome,&nome2,&nomeResultado);
 	ret=multiplicarMatrizes(slot,nome,nome2,nomeResultado);
 	if(ret = 0)
@@ -175,7 +175,7 @@ int main (void)
 	  printf("OK");
 	}
 	break;
-      case ME:
+      case 'ME':
 	scanf("%s %s %s",&nome,&nome2,&nomeResultado);
 	ret=multiplicarElementosMatrizes(slot,nome,nome2,nomeResultado);
 	if(ret = 0)
@@ -187,11 +187,11 @@ int main (void)
 	  printf("OK");
 	}
 	break;
-      case FE:
+      case 'FE':
 	break;
     }
     
-  }while(strcmp(FE,operation)==0)
+  }while(strcmp('FE',operation)==0);
   
   return 0;
 }

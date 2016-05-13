@@ -12,7 +12,7 @@ struct lista{
   lista *prox;
 };
 
-int criarLista(lista **listaMatrizes,char nome,int linha,int coluna)
+int criarLista(Lista **listaMatrizes,char nome,int linha,int coluna)
 {
   int ret;
   
@@ -22,7 +22,7 @@ int criarLista(lista **listaMatrizes,char nome,int linha,int coluna)
   }
   else
   {
-  lista *novo = (lista *)malloc(sizeof(lista));
+  Lista *novo = (Lista *)malloc(sizeof(Lista));
   strcpy(novo->nome,nome);
   novo->i=linhas;
   novo->j=colunas;
@@ -38,10 +38,10 @@ int criarLista(lista **listaMatrizes,char nome,int linha,int coluna)
     }
   }
 }
-int inserir(lista **listaMatrizes, lista *novo)
+int inserir(Lista **listaMatrizes, Lista *novo)
 {
-  lista *atual = *lista;
-  lista *anterior = NULL;
+  Lista *atual = *Lista;
+  Lista *anterior = NULL;
  
   if(!(*listaMatrizes)) //lista vazia
     {
@@ -76,10 +76,10 @@ int inserir(lista **listaMatrizes, lista *novo)
 }
 
 //DM
-int destroirMatriz(lista **mat,char nome)
+int destroirMatriz(Lista **mat,char nome)
 {
-  lista *atual = *mat;
-  lista *anterior=NULL;
+  Lista *atual = *mat;
+  Lista *anterior=NULL;
   if(!mat)
     {
       return 0;

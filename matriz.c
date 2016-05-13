@@ -39,10 +39,10 @@ float **criarMatriz(int linhas, int colunas)
 //DM-> na lista.C
 
 //IM
-int imprimirMatriz(lista *mat, char nome)
+int imprimirMatriz(Lista *mat, char nome)
 {
   int auxI=0, auxJ=0;
-  lista *imprimir;
+  Lista *imprimir;
   if(!mat)
     {
       return 0;
@@ -63,10 +63,10 @@ int imprimirMatriz(lista *mat, char nome)
       }
 }
 //AE
-int atribuirElemento(lista **mat,char nome,int linha, int coluna, int valor)
+int atribuirElemento(Lista **mat,char nome,int linha, int coluna, int valor)
 {
-  lista *atual=*mat;
-  lista *anterior=NULL;
+  Lista *atual=*mat;
+  Lista *anterior=NULL;
 
   if(!(*mat))
   {
@@ -99,9 +99,9 @@ int atribuirElemento(lista **mat,char nome,int linha, int coluna, int valor)
  * para converter
  * verificar com o #
  */
-int atribruirLinha(lista **mat,char nome,int linha, char valores,int var)
+int atribruirLinha(Lista **mat,char nome,int linha, char valores,int var)
 {
- lista *atual=*mat;
+ Lista *atual=*mat;
  int j=0;
   if(!(*mat))
   {
@@ -134,9 +134,9 @@ int atribruirLinha(lista **mat,char nome,int linha, char valores,int var)
   }
 }
 //AC
-int atribuirColuna(lista **mat,char nome,int coluna, char valores,int var)
+int atribuirColuna(Lista **mat,char nome,int coluna, char valores,int var)
 {
-  lista *atual = *mat;
+  Lista *atual = *mat;
   int i=0;
   if(!(*mat))
   {
@@ -169,9 +169,9 @@ int atribuirColuna(lista **mat,char nome,int coluna, char valores,int var)
   }
 }
 //TM
-int transporMatriz(lista *mat,char nome,char nomeResultado)
+int transporMatriz(Lista *mat,char nome,char nomeResultado)
 {
-  lista *atual=mat;
+  Lista *atual=mat;
   int i,j,ret;
   if(!(*mat))
   {
@@ -183,7 +183,7 @@ int transporMatriz(lista *mat,char nome,char nomeResultado)
     {
       atual=atual->prox;
     }
-    lista *novo = (lista *)malloc(sizeof(lista));
+    Lista *novo = (Lista *)malloc(sizeof(Lista));
     strcpy(novo->nome,nomeResultado);
     novo->i= atual->j;
     novo->j= atual->i;
@@ -200,9 +200,9 @@ int transporMatriz(lista *mat,char nome,char nomeResultado)
   }
 }
 //SM
-int somarMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
+int somarMatrizes(Lista *mat,char nome,char nome2,char nomeResultado)
 {
-  lista *m1, *m2;
+  Lista *m1, *m2;
   int i,j,ret;
   if(!(*mat))
   {
@@ -218,7 +218,7 @@ int somarMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
     }
     else
     {
-    lista *novo = (lista *)malloc(sizeof(lista));
+    Lista *novo = (Lista *)malloc(sizeof(Lista));
     strcpy(novo->nome,nomeResultado);
     novo->i= m1->i;
     novo->j= m1->j;
@@ -236,9 +236,9 @@ int somarMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
   }
 }
 //DV
-int dividirMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
+int dividirMatrizes(Lista *mat,char nome,char nome2,char nomeResultado)
 {
-  lista *m1, *m2;
+  Lista *m1, *m2;
   int i,j,ret;
   if(!(*mat))
   {
@@ -254,7 +254,7 @@ int dividirMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
     }
     else
     {
-    lista *novo = (lista *)malloc(sizeof(lista));
+    Lista *novo = (Lista *)malloc(sizeof(Lista));
     strcpy(novo->nome,nomeResultado);
     novo->i= m1->i;
     novo->j= m1->j;
@@ -279,9 +279,9 @@ int dividirMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
   }
 }
 //MM
-int multiplicarMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
+int multiplicarMatrizes(Lista *mat,char nome,char nome2,char nomeResultado)
 {
-  lista *m1, *m2;
+  Lista *m1, *m2;
   int i,j,n,ret;
   if(!(*mat))
   {
@@ -297,7 +297,7 @@ int multiplicarMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
     }
     else
     {
-    lista *novo = (lista *)malloc(sizeof(lista));
+    Lista *novo = (Lista *)malloc(sizeof(Lista));
     strcpy(novo->nome,nomeResultado);
     novo->i= m1->i;
     novo->j= m1->j;
@@ -316,9 +316,9 @@ int multiplicarMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
   }
 }
 //ME
-int multiplicarElementosMatrizes(lista *mat,char nome,char nome2,char nomeResultado)
+int multiplicarElementosMatrizes(Lista *mat,char nome,char nome2,char nomeResultado)
 {
-  lista *m1, *m2;
+  Lista *m1, *m2;
   int i,j,ret;
   if(!(*mat))
   {
@@ -326,7 +326,7 @@ int multiplicarElementosMatrizes(lista *mat,char nome,char nome2,char nomeResult
   }
   else
   {
-  *m1=procuraMat(mat,nome);
+  *m1=procuraMat(mat,nome); 	 	
   *m2=procuraMat(mat,nome2);
     if(m1->i != m2->i || m1->j != m2->j)
     {
@@ -334,7 +334,7 @@ int multiplicarElementosMatrizes(lista *mat,char nome,char nome2,char nomeResult
     }
     else
     {
-    lista *novo = (lista *)malloc(sizeof(lista));
+    Lista *novo = (Lista *)malloc(sizeof(Lista));
     strcpy(novo->nome,nomeResultado);
     novo->i= m1->i;
     novo->j= m1->j;
@@ -353,9 +353,9 @@ int multiplicarElementosMatrizes(lista *mat,char nome,char nome2,char nomeResult
 }
 
 /* Funcoes Aux*/
-lista procuraMat(lista *mat,char nome)
+Lista procuraMat(Lista *mat,char nome)
 {
-  lista *atual=mat;
+  Lista *atual=mat;
   while((atual) && (strcmp(atual->nome,nome)!=0))
   {
     atual=atual->prox;

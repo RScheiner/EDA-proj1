@@ -2,7 +2,7 @@
 
 all: projeto
 
-projeto: main.o matriz.o lista.o
+projeto: lista.o matriz.o main.o
 	gcc main.o matriz.o lista.o -lm -o projeto.exe
 	
 main.o: main.c

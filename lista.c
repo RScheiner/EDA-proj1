@@ -2,21 +2,15 @@
 #include <stdio_ext.h>
 #include <stdlib.h>
 #include <string.h>
-#include "matriz.h"
+//#include "matriz.h"
 #include "lista.h"
 
-struct lista{
-  char nome[10];
-  float **end;
-  int i,j; //i == linhas j == colunas
-  lista *prox;
-};
 
 int criarLista(Lista **listaMatrizes,char nome,int linha,int coluna)
 {
   int ret;
   
-  if(linhas > 50 || colunas > 50)
+  if(linha > 50 || coluna > 50)
   {
     return 0;
   }
@@ -24,8 +18,8 @@ int criarLista(Lista **listaMatrizes,char nome,int linha,int coluna)
   {
   Lista *novo = (Lista *)malloc(sizeof(Lista));
   strcpy(novo->nome,nome);
-  novo->i=linhas;
-  novo->j=colunas;
+  novo->i=linha;
+  novo->j=coluna;
   novo->end = criarMatriz(linha,coluna);
   ret = inserir(listaMatrizes,novo);
     if(ret == 1)
@@ -40,7 +34,7 @@ int criarLista(Lista **listaMatrizes,char nome,int linha,int coluna)
 }
 int inserir(Lista **listaMatrizes, Lista *novo)
 {
-  Lista *atual = *Lista;
+  Lista *atual = *listaMatrizes;
   Lista *anterior = NULL;
  
   if(!(*listaMatrizes)) //lista vazia

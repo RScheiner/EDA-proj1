@@ -3,7 +3,7 @@
 #include "lista.h"
 
 /* tipo exportado */
-typedef struct matriz Matriz;
+
 
 /* Funcoes */
 

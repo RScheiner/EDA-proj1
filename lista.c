@@ -1,13 +1,39 @@
+/*
+ * Integrantes:
+ * Rafael Sperandio Scheiner - RA:12014569
+ * Brunno Vega		     - RA:13144175
+ * Vitor Borela 	     - RA:14056626
+ */
+
 #include <stdio.h>
 #include <stdio_ext.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "matriz.h"
 #include "lista.h"
 
-
-int criarLista(Lista **listaMatrizes,char nome,int linha,int coluna)
+//CM
+float **criarMatriz(int linhas, int colunas)
 {
+  float **Matriz;
+  int i,j;
+  Matriz = malloc(colunas * sizeof(float *));
+  for(i=0;i<linhas;i++)
+  {
+    Matriz[i]= malloc(linhas* sizeof(float));
+  }
+
+  for(i=0;i<linhas;i++)
+  {
+    for(j=0;j<colunas;j++)
+    {
+      Matriz[i][j]=0;
+    }
+  }
+  return Matriz;
+}
+
+int criarLista(Lista **listaMatrizes,char nome[],int linha,int coluna)
+{	
   int ret;
   
   if(linha > 50 || coluna > 50)
@@ -70,7 +96,7 @@ int inserir(Lista **listaMatrizes, Lista *novo)
 }
 
 //DM
-int destroirMatriz(Lista **mat,char nome)
+int destroirMatriz(Lista **mat,char nome[])
 {
   Lista *atual = *mat;
   Lista *anterior=NULL;
@@ -80,7 +106,7 @@ int destroirMatriz(Lista **mat,char nome)
     }
     else
       {
-	while(!(*mat) && (strcmp((mat->nome),nome)==0))
+	while(!(*mat) && (strcmp((atual->nome),nome)==0))
 	  {
 	    anterior = atual;
 	    atual=atual->prox;
@@ -109,4 +135,15 @@ int destroirMatriz(Lista **mat,char nome)
   
       }
   
+}
+
+/* Funcoes Aux*/
+Lista procuraMat(Lista *mat,char nome[])
+{
+  Lista *atual=mat;
+  while((atual) && (strcmp(atual->nome,nome)!=0))
+  {
+    atual=atual->prox;
+  }
+  return atual;
 }

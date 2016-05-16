@@ -1,3 +1,10 @@
+/*
+ * Integrantes:
+ * Rafael Sperandio Scheiner - RA:12014569
+ * Brunno Vega		     - RA:13144175
+ * Vitor Borela 	     - RA:14056626
+ */
+
 #ifndef MATRIZ_H_
 #define MATRIZ_H_
 #include "lista.h"
@@ -7,38 +14,35 @@
 
 /* Funcoes */
 
-//CM
-float **criarMatriz(int linhas, int colunas);
 
 //DM-> na lista.H
 
 //IM - OK
-int imprimirMatriz(Lista *mat, char nome);
+int imprimirMatriz();
 
 //AE
-int atribuirElemento(Lista **mat,char nome,int linha, int coluna, int valor);
+int atribuirElemento();
 
 //AL
-int atribruirLinha(Lista **mat,char nome,int linha, char valores,int var);
+int atribruirLinha();
 
 //AC
-int atribuirColuna(Lista **mat,char nome,int coluna, char valores,int var);
+int atribuirColuna();
 
 //TM
-int transporMatriz(Lista *mat,char nome,char nomeResultado);
+int transporMatriz();
 
 //SM
-int somarMatrizes(Lista *mat,char nome,char nome2,char nomeResultado);
+int somarMatrizes();
 
 //DV
-int dividirMatrizes(Lista *mat,char nome,char nome2,char nomeResultado);
+int dividirMatrizes();
 
 //MM
-int multiplicarMatrizes(Lista *mat,char nome,char nome2,char nomeResultado);
+int multiplicarMatrizes();
 
 //ME
-int multiplicarElementosMatrizes(Lista *mat,char nome,char nome2,char nomeResultado);
+int multiplicarElementosMatrizes();
 
-/* Funcoes Aux*/
-Lista procuraMat(Lista *mat,char nome);
+
 #endif

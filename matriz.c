@@ -1,9 +1,18 @@
+/*
+ * Integrantes:
+ * Rafael Sperandio Scheiner - RA:12014569
+ * Brunno Vega		     - RA:13144175
+ * Vitor Borela 	     - RA:14056626
+ */
+
 #include <stdio.h>
 #include <stdio_ext.h>
 #include <stdlib.h>
 #include <string.h>
 #include "matriz.h"
-#include "lista.h"
+
+
+/*mandar soh o campo float*/
 
 //matriz ortogonais (ver material)
 
@@ -12,84 +21,32 @@
   matriz *lado, *baixo;
 };*/
 
-
 /* Funcoes */
 
-//CM
-float **criarMatriz(int linhas, int colunas)
-{
-  float **Matriz;
-  int i,j;
-  Matriz = malloc(colunas * sizeof(float *));
-  for(i=0;i<linhas;i++)
-  {
-    Matriz[i]= malloc(linhas* sizeof(float));
-  }
 
-  for(i=0;i<linhas;i++)
-  {
-    for(j=0;j<colunas;j++)
-    {
-      Matriz[i][j]=0;
-    }
-  }
-  return Matriz;
-}
 
 //DM-> na lista.C
 
 //IM
-int imprimirMatriz(Lista *mat, char nome)
+int imprimirMatriz(float **mat,int i,int j)
 {
-  int auxI=0, auxJ=0;
-  Lista *imprimir;
-  if(!mat)
-    {
-      return 0;
-    }
-    else
-      {
-	imprimir = procuraMat(mat,nome);
-	
-	  for(auxI;auxI<imprimir->i;auxI++)
+  int auxI=0,auxJ=0
+	for(auxI;auxI<i;auxI++)
 	  {
-	    for(auxJ;auxJ<imprimir->j;auxJ++)
+	    for(auxJ;auxJ<j;auxJ++)
 	    {
-	      printf("%6.2f",imprimir->end[auxI][auxJ]);
+	      printf("%6.2f",mat[auxI][auxJ]);
 	    }
 	    printf("\n");
 	  }
 	  return 1;
-      }
 }
 //AE
-int atribuirElemento(Lista **mat,char nome,int linha, int coluna, int valor)
+int atribuirElemento(float **mat,int i,int j,float val)
 {
-  Lista *atual=*mat;
-  Lista *anterior=NULL;
-
-  if(!(*mat))
-  {
-    return 0;
-  }
-    else
-      {
-	while((atual) && (strcmp(atual->nome,nome)!=0))
-	  {
-	    anterior=atual;
-	    atual=atual->prox;
-	  }
-	  if((atual->i < linha)||(atual->j < coluna))
-	    {
-	      return 0;
-	    }
-	    else
-	    {
 	      atual->end[linha][coluna]=valor;
 	      return 1;
-	    }
-	 return 0;
-      }
+
 }
 //AL
 /*
@@ -99,26 +56,10 @@ int atribuirElemento(Lista **mat,char nome,int linha, int coluna, int valor)
  * para converter
  * verificar com o #
  */
-int atribruirLinha(Lista **mat,char nome,int linha, char valores,int var)
+int atribruirLinha(float **mat,int linha,char valores)
 {
- Lista *atual=*mat;
  int j=0;
-  if(!(*mat))
-  {
-    return 0;
-  }
-  else
-  {
-    while((atual) && (strcmp(atual->nome,nome)!=0))
-    {
-      atual=atual->prox;
-    }
-    if(var > atual->j)
-    {
-      return 0;
-    }
-    else
-    {
+
       for(j=0;j<51;j++)
       {
 	if(strcmp(valores[j],"#")==0)
@@ -127,33 +68,16 @@ int atribruirLinha(Lista **mat,char nome,int linha, char valores,int var)
 	}
 	else
 	{
-	  atual->end[linha][j]=atof(valores[j]);
+	  mat[linha][j]=atof(valores[j]);
 	}
       }
-    }
-  }
 }
 //AC
-int atribuirColuna(Lista **mat,char nome,int coluna, char valores,int var)
+int atribuirColuna(float **mat,int coluna,char valores)
 {
-  Lista *atual = *mat;
+
   int i=0;
-  if(!(*mat))
-  {
-    return 0;
-  }
-  else
-  {
-    while((atual) && (strcmp(atual->nome,nome)!=0))
-    {
-      atual=atual->prox;
-    }
-    if(var > atual->i)
-    {
-      return 0;
-    }
-     else
-    {
+
       for(i=0;i<51;i++)
       {
 	if(strcmp(valores[i],"#")==0)
@@ -162,81 +86,41 @@ int atribuirColuna(Lista **mat,char nome,int coluna, char valores,int var)
 	}
 	else
 	{
-	  atual->end[i][coluna]=atof(valores[i]);
+	  atual->mat[i][coluna]=atof(valores[i]);
 	}
       }
-    }
-  }
+
 }
 //TM
-int transporMatriz(Lista *mat,char nome,char nomeResultado)
+int transporMatriz(float **mat1,float **mat2,int L,int C)
 {
-  Lista *atual=mat;
-  int i,j,ret;
-  if(!(*mat))
-  {
-    return 0;
-  }
-  else
-  {
-    while(atual && strcmp(atual->nome,nome) !=0 )
+  int i,j;
+
+    for(i=0;i<L;i++)
     {
-      atual=atual->prox;
-    }
-    Lista *novo = (Lista *)malloc(sizeof(Lista));
-    strcpy(novo->nome,nomeResultado);
-    novo->i= atual->j;
-    novo->j= atual->i;
-    novo->end=criarMatriz(atual->j,atual->i);
-    for(i=0;i<(atual->i);i++)
-    {
-      for(j=0;j<(atual->j);j++)
+      for(j=0;j<C;j++)
       {
-	novo->end[j][i]=atual->end[i][j];
+	mat2[j][i]=mat1[i][j];
       }
     }
-    ret = inserir(novo,nomeResultado);
-    return ret;
-  }
 }
 //SM
-int somarMatrizes(Lista *mat,char nome,char nome2,char nomeResultado)
+int somarMatrizes(float **mat1,float **mat2,float **matR,int linha,int coluna)
 {
-  Lista *m1, *m2;
-  int i,j,ret;
-  if(!(*mat))
-  {
-    return 0;
-  }
-  else
-  {
-  *m1=procuraMat(mat,nome);
-  *m2=procuraMat(mat,nome2);
-    if(m1->i != m2->i || m1->j != m2->j)
-    {
-      return 0;
-    }
-    else
-    {
-    Lista *novo = (Lista *)malloc(sizeof(Lista));
-    strcpy(novo->nome,nomeResultado);
-    novo->i= m1->i;
-    novo->j= m1->j;
-    novo->end=criarMatriz(m1->i,m1->j);
-      for(i=0;i<(m1->i);i++)
+ 
+  int i,j;
+  
+      for(i=0;i<linha;i++)
       {
-        for(j=0;j<(m1->j);j++)
+        for(j=0;j<coluna;j++)
 	{
-	  novo->end[i][j]= m1->end[i][j]+m2->end[i][j];
+	  matR[i][j]= mat1[i][j]+mat2[i][j];
         }
       }
-      ret=inserir(novo,nomeResultado);
-      return ret;
-    }
-  }
+
 }
 //DV
-int dividirMatrizes(Lista *mat,char nome,char nome2,char nomeResultado)
+int dividirMatrizes()
 {
   Lista *m1, *m2;
   int i,j,ret;
@@ -279,7 +163,7 @@ int dividirMatrizes(Lista *mat,char nome,char nome2,char nomeResultado)
   }
 }
 //MM
-int multiplicarMatrizes(Lista *mat,char nome,char nome2,char nomeResultado)
+int multiplicarMatrizes()
 {
   Lista *m1, *m2;
   int i,j,n,ret;
@@ -316,7 +200,7 @@ int multiplicarMatrizes(Lista *mat,char nome,char nome2,char nomeResultado)
   }
 }
 //ME
-int multiplicarElementosMatrizes(Lista *mat,char nome,char nome2,char nomeResultado)
+int multiplicarElementosMatrizes()
 {
   Lista *m1, *m2;
   int i,j,ret;
@@ -352,13 +236,3 @@ int multiplicarElementosMatrizes(Lista *mat,char nome,char nome2,char nomeResult
   }
 }
 
-/* Funcoes Aux*/
-Lista procuraMat(Lista *mat,char nome)
-{
-  Lista *atual=mat;
-  while((atual) && (strcmp(atual->nome,nome)!=0))
-  {
-    atual=atual->prox;
-  }
-  return atual;
-}

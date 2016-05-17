@@ -5,7 +5,7 @@
  * Vitor Borela 	     - RA:14056626
  */
 
-//#ifndef LISTA_H_
+#ifndef LISTA_H_
 #define LISTA_H_
 
 /* tipo exportado */
@@ -30,7 +30,8 @@ int inserir(Lista **listaMatrizes, Lista *novo);
 int destroirMatriz(Lista **mat,char nome[]);
 
 /* Funcoes Aux*/
-Lista procuraMat(Lista *mat,char nome[]);
+Lista *procuraMat(Lista *mat,char nome[]);
 
 //CM
 float **criarMatriz(int linhas, int colunas);
+#endif

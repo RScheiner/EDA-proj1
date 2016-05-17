@@ -14,7 +14,7 @@
 
 int main (void)
 {
-  char operation;
+  char operation[2];
   char nome[10],nome2[10],nomeResultado[10];
   char valores[50];
   int linhas=0,colunas=0,ret=0,i=0,j=0,cont=0;
@@ -24,28 +24,26 @@ int main (void)
   Lista *recebe2=NULL;
   Lista *recebe3=NULL;
   do{
-    printf("CM-Criar Matriz");
-    printf("DM-Destruir Matriz");
-    printf("IM-Imprimir Matriz");
-    printf("AE-Atribuir Elemento a matriz");
-    printf("AL-Atribuir uma Linha a matriz");
-    printf("AC-Atribuir uma Coluna a matriz");
-    printf("TM-Transpor uma Matriz");
-    printf("SM-Somar duas Matrizes");
-    printf("DV-Dividir uma matriz por outra(elemento por elemento)");
-    printf("MM-Multiplicar uma Matriz por outra");
-    printf("ME-Multiplicar uma matriz por outra (elemento a elemento) ");
-    printf("FE-Finaliza a Execução");
+    printf("CM-Criar Matriz\n");
+    printf("DM-Destruir Matriz\n");
+    printf("IM-Imprimir Matriz\n");
+    printf("AE-Atribuir Elemento a matriz\n");
+    printf("AL-Atribuir uma Linha a matriz\n");
+    printf("AC-Atribuir uma Coluna a matriz\n");
+    printf("TM-Transpor uma Matriz\n");
+    printf("SM-Somar duas Matrizes\n");
+    printf("DV-Dividir uma matriz por outra(elemento por elemento)\n");
+    printf("MM-Multiplicar uma Matriz por outra\n");
+    printf("ME-Multiplicar uma matriz por outra (elemento a elemento) \n");
+    printf("FE-Finaliza a Execução\n");
 	__fpurge(stdin);
         fgets(operation,32,stdin);
 	
-	
-    switch (operation)
-    {
-      case 'CM': //ok
+	if(strcmp("CM",operation)==0)
+	{	
 	fgets(nome,32,stdin);
 	scanf("%i %i",&linhas,&colunas);
-	ret = criarLista(slot,nome,linhas,colunas);
+	ret = criarLista(&slot,nome,linhas,colunas);
 	if(ret = 0)
 	{
 	  printf("ERRO");
@@ -54,8 +52,10 @@ int main (void)
 	{
 	  printf("OK");
 	}
-	break;
-      case 'DM': //ok
+	}
+
+      if(strcmp("DM",operation)==0)
+	{
 	fgets(nome,32,stdin);
 	ret=destroirMatriz(&slot,nome);
 	if(ret==0)
@@ -73,8 +73,10 @@ int main (void)
 	    printf("ERRO");
 	  }
 	}
-	break;
-      case 'IM': //ok
+	}
+    
+	if(strcmp("IM",operation)==0)
+	{
 	fgets(nome,32,stdin);
 	if(!slot)
 	{
@@ -89,9 +91,9 @@ int main (void)
 	{
 	  printf("ERRO");
 	}
-	break;
-	
-      case 'AE': //ok
+	}
+      if(strcmp("AE",operation)==0)
+	{
 	fgets(nome,32,stdin);
 	scanf( "%i %i %f",&linhas,&colunas,&val);
 	if(!slot)
@@ -101,7 +103,7 @@ int main (void)
 	else
 	{
 	recebe1 = procuraMat(slot,nome);
-	if((recebe1->i < linha)||(recebe1->j < coluna))
+	if((recebe1->i < linhas)||(recebe1->j < colunas))
 	{
 	  printf("ERRO");
 	}
@@ -118,15 +120,16 @@ int main (void)
 	{
 	  printf("OK");
 	}
-	break;
-      case 'AL': //ok
+	}
+      if(strcmp("AL",operation)==0)
+	{
 	fgets(nome,32,stdin);
 	scanf("%i", &linhas);
 	for(i=0;i<51;i++)
 	{
 	  __fpurge(stdin);
-	  scanf("%s",valores[i]);
-	  if(strcmp(valores[i],"#")==0)
+	  scanf("%s",&valores[i]);
+	  if(strcmp("#",valores[i])==0)
 	    break;
 	  cont++;
 	}
@@ -154,15 +157,16 @@ int main (void)
 	{
 	  printf("OK");
 	}
-	break;
-      case 'AC': //ok
+	}
+      if(strcmp("AC",operation)==0)
+	{
 	fgets(nome,32,stdin);
 	scanf("%i", &colunas);
 	for(i=0;i<51;i++)
 	{
 	  __fpurge(stdin);
-	  scanf("%s",valores[i]);
-	  if(strcmp(valores[i],"#")==0)
+	  scanf("%s",&valores[i]);
+	  if(strcmp("#",valores[i])==0)
 	    break;
 	  cont++;
 	}
@@ -190,8 +194,9 @@ int main (void)
 	{
 	  printf("OK");
 	}
-	break;
-      case 'TM': //ok
+	}
+     if(strcmp("TM",operation)==0)
+	{
 	fgets(nome,32,stdin);
 	fgets(nomeResultado,32,stdin);
 	if(!slot)
@@ -207,7 +212,7 @@ int main (void)
 	    novo->i= recebe1->j;
 	      novo->j= recebe1->i;
 		novo->end=criarMatriz(recebe1->j,recebe1->i); 
-	ret = inserir(&slot,novo)
+	ret = inserir(&slot,novo);
 	if(ret == 0)
 	{
 	  printf("ERRO");
@@ -223,8 +228,9 @@ int main (void)
 	{
 	  printf("ERRO");
 	}
-	break;
-      case 'SM': //ok
+	}
+      if(strcmp("SM",operation)==0)
+	{
 	fgets(nome,32,stdin);
 	fgets(nome2,32,stdin);
 	fgets(nomeResultado,32,stdin);
@@ -247,7 +253,7 @@ int main (void)
 	      novo->i= recebe1->j;
 	      novo->j= recebe1->i;
 	      novo->end=criarMatriz(recebe1->j,recebe1->i); 
-	      ret = inserir(&slot,novo)
+	      ret = inserir(&slot,novo);
 	      if(ret ==0)
 	      {
 		printf("ERRO");
@@ -267,12 +273,43 @@ int main (void)
 	{
 	  printf("OK");
 	}
-	break;
-      case 'DV'://to do
+	}
+      if(strcmp("DV",operation)==0)
+	{
 	fgets(nome,32,stdin);
 	fgets(nome2,32,stdin);
 	fgets(nomeResultado,32,stdin);
-	ret=dividirMatrizes(slot,nome,nome2,nomeResultado);
+	if(!slot)
+	{
+	  printf("ERRO");
+	}
+	  else
+	  {
+	    recebe1=procuraMat(slot,nome);
+	    recebe2=procuraMat(slot,nome2);
+	    if(recebe1->i != recebe2->i || recebe1->j != recebe2->j)
+	    {
+	       printf("ERRO");
+	    }
+	    else
+	    {
+	      Lista *novo = (Lista *)malloc(sizeof(Lista));
+	      strcpy(novo->nome,nomeResultado);
+	      novo->i= recebe1->j;
+	      novo->j= recebe1->i;
+	      novo->end=criarMatriz(recebe1->j,recebe1->i); 
+	      ret = inserir(&slot,novo);
+	      if(ret ==0)
+	      {
+		printf("ERRO");
+	      }
+	      else
+	      {
+	      recebe3=procuraMat(slot,nomeResultado);
+	      ret=dividirMatrizes(recebe1->end,recebe2->end,recebe3->end,recebe1->i,recebe1->j);
+	  }
+	  }
+	  }
 	if(ret = 0)
 	{
 	  printf("ERRO");
@@ -281,12 +318,43 @@ int main (void)
 	{
 	  printf("OK");
 	}
-	break;
-      case 'MM'://to do
+	}
+      if(strcmp("MM",operation)==0)
+	{
 	fgets(nome,32,stdin);
 	fgets(nome2,32,stdin);
 	fgets(nomeResultado,32,stdin);
-	ret=multiplicarMatrizes(slot,nome,nome2,nomeResultado);
+	if(!slot)
+	{
+	  printf("ERRO");
+	}
+	  else
+	  {
+	    recebe1=procuraMat(slot,nome);
+	    recebe2=procuraMat(slot,nome2);
+	    if(recebe1->i != recebe2->j)
+	    {
+	       printf("ERRO");
+	    }
+	    else
+	    {
+	      Lista *novo = (Lista *)malloc(sizeof(Lista));
+	      strcpy(novo->nome,nomeResultado);
+	      novo->i= recebe1->j;
+	      novo->j= recebe1->i;
+	      novo->end=criarMatriz(recebe1->j,recebe1->i); 
+	      ret = inserir(&slot,novo);
+	      if(ret ==0)
+	      {
+		printf("ERRO");
+	      }
+	      else
+	      {
+	      recebe3=procuraMat(slot,nomeResultado);
+	      ret=multiplicarMatrizes(recebe1->end,recebe2->end,recebe3->end,recebe1->i,recebe1->j,recebe2->j);
+	  }
+	  }
+	  }
 	if(ret = 0)
 	{
 	  printf("ERRO");
@@ -295,12 +363,43 @@ int main (void)
 	{
 	  printf("OK");
 	}
-	break;
-      case 'ME'://to do
+	}
+      if(strcmp("ME",operation)==0)
+	{
 	fgets(nome,32,stdin);
 	fgets(nome2,32,stdin);
 	fgets(nomeResultado,32,stdin);
-	ret=multiplicarElementosMatrizes(slot,nome,nome2,nomeResultado);
+	if(!slot)
+	{
+	  printf("ERRO");
+	}
+	  else
+	  {
+	    recebe1=procuraMat(slot,nome);
+	    recebe2=procuraMat(slot,nome2);
+	    if(recebe1->i != recebe2->i || recebe1->j != recebe2->j)
+	    {
+	       printf("ERRO");
+	    }
+	    else
+	    {
+	      Lista *novo = (Lista *)malloc(sizeof(Lista));
+	      strcpy(novo->nome,nomeResultado);
+	      novo->i= recebe1->j;
+	      novo->j= recebe1->i;
+	      novo->end=criarMatriz(recebe1->j,recebe1->i); 
+	      ret = inserir(&slot,novo);
+	      if(ret ==0)
+	      {
+		printf("ERRO");
+	      }
+	      else
+	      {
+	      recebe3=procuraMat(slot,nomeResultado);
+	      ret=multiplicarElementosMatrizes(recebe1->end,recebe2->end,recebe3->end,recebe1->i,recebe1->j);
+	  }
+	  }
+	  }
 	if(ret = 0)
 	{
 	  printf("ERRO");
@@ -309,12 +408,9 @@ int main (void)
 	{
 	  printf("OK");
 	}
-	break;
-      case 'FE':
-	break;
-    }
+	}
     
-  }while(strcmp('FE',operation)==0);
+  }while(strcmp("FE",operation)==0);
   
   return 0;
 }

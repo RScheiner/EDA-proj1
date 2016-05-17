@@ -30,7 +30,7 @@
 //IM
 int imprimirMatriz(float **mat,int i,int j)
 {
-  int auxI=0,auxJ=0
+  int auxI=0,auxJ=0;
 	for(auxI;auxI<i;auxI++)
 	  {
 	    for(auxJ;auxJ<j;auxJ++)
@@ -44,7 +44,7 @@ int imprimirMatriz(float **mat,int i,int j)
 //AE
 int atribuirElemento(float **mat,int i,int j,float val)
 {
-	      atual->end[linha][coluna]=valor;
+	      mat[i][j]=val;
 	      return 1;
 
 }
@@ -56,7 +56,7 @@ int atribuirElemento(float **mat,int i,int j,float val)
  * para converter
  * verificar com o #
  */
-int atribruirLinha(float **mat,int linha,char valores)
+int atribruirLinha(float **mat,int linha,char valores[])
 {
  int j=0;
 
@@ -73,7 +73,7 @@ int atribruirLinha(float **mat,int linha,char valores)
       }
 }
 //AC
-int atribuirColuna(float **mat,int coluna,char valores)
+int atribuirColuna(float **mat,int coluna,char valores[])
 {
 
   int i=0;
@@ -86,10 +86,10 @@ int atribuirColuna(float **mat,int coluna,char valores)
 	}
 	else
 	{
-	  atual->mat[i][coluna]=atof(valores[i]);
+	  mat[i][coluna]=atof(valores[i]);
 	}
       }
-
+  
 }
 //TM
 int transporMatriz(float **mat1,float **mat2,int L,int C)
@@ -103,6 +103,7 @@ int transporMatriz(float **mat1,float **mat2,int L,int C)
 	mat2[j][i]=mat1[i][j];
       }
     }
+    return 1;
 }
 //SM
 int somarMatrizes(float **mat1,float **mat2,float **matR,int linha,int coluna)
@@ -117,122 +118,58 @@ int somarMatrizes(float **mat1,float **mat2,float **matR,int linha,int coluna)
 	  matR[i][j]= mat1[i][j]+mat2[i][j];
         }
       }
-
+  return 1;
 }
 //DV
-int dividirMatrizes()
+int dividirMatrizes(float **mat1,float **mat2,float **matR,int linha,int coluna)
 {
-  Lista *m1, *m2;
-  int i,j,ret;
-  if(!(*mat))
-  {
-    return 0;
-  }
-  else
-  {
-  *m1=procuraMat(mat,nome);
-  *m2=procuraMat(mat,nome2);
-    if(m1->i != m2->i || m1->j != m2->j)
-    {
-      return 0;
-    }
-    else
-    {
-    Lista *novo = (Lista *)malloc(sizeof(Lista));
-    strcpy(novo->nome,nomeResultado);
-    novo->i= m1->i;
-    novo->j= m1->j;
-    novo->end=criarMatriz(m1->i,m1->j);
-      for(i=0;i<(m1->i);i++)
+
+  int i,j;
+
+      for(i=0;i<linha;i++)
       {
-        for(j=0;j<(m1->j);j++)
+        for(j=0;j<coluna;j++)
 	{
-	  if(m2[i][j] != 0)
+	  if(mat2[i][j] != 0)
 	  {
-	  novo->end[i][j]= m1->end[i][j]/m2->end[i][j];
+	  matR[i][j]= mat1[i][j]/mat2[i][j];
 	  }
 	  else
 	  {
-	    novo->end[i][j]=0;
+	    matR[i][j]=0;
 	  }
         }
       }
-      ret=inserir(novo,nomeResultado);
-      return ret;
-    }
-  }
+      return 1;
 }
 //MM
-int multiplicarMatrizes()
+int multiplicarMatrizes(float **mat1,float **mat2,float **matR,int linha,int coluna,int coluna2)
 {
-  Lista *m1, *m2;
-  int i,j,n,ret;
-  if(!(*mat))
-  {
-    return 0;
-  }
-  else
-  {
-  *m1=procuraMat(mat,nome);
-  *m2=procuraMat(mat,nome2);
-    if(m1->i != m2->j)
-    {
-    return 0;
-    }
-    else
-    {
-    Lista *novo = (Lista *)malloc(sizeof(Lista));
-    strcpy(novo->nome,nomeResultado);
-    novo->i= m1->i;
-    novo->j= m1->j;
-    novo->end=criarMatriz(m1->i,m2->j);
-       for(i=0;i< m1->i;i++)
+  int i,j,n;
+       for(i=0;i< linha;i++)
        {
-        for(j=0;j< m2->j;j++)
+        for(j=0;j<coluna2;j++)
 	{
-            for(n=0;n<m1->j;n++)
+            for(n=0;n<coluna;n++)
 	    {
-                novo->end[i][j]= novo->end[i][j] + m1->end[i][n] * m2->end[n][j];
+                matR[i][j]= matR[i][j] + mat1[i][n] * mat2[n][j];
             }
         }
        }
-    }
-  }
+  return 1;
 }
 //ME
-int multiplicarElementosMatrizes()
+int multiplicarElementosMatrizes(float **mat1,float **mat2,float **matR,int linha,int coluna)
 {
-  Lista *m1, *m2;
-  int i,j,ret;
-  if(!(*mat))
-  {
-    return 0;
-  }
-  else
-  {
-  *m1=procuraMat(mat,nome); 	 	
-  *m2=procuraMat(mat,nome2);
-    if(m1->i != m2->i || m1->j != m2->j)
-    {
-      return 0;
-    }
-    else
-    {
-    Lista *novo = (Lista *)malloc(sizeof(Lista));
-    strcpy(novo->nome,nomeResultado);
-    novo->i= m1->i;
-    novo->j= m1->j;
-    novo->end=criarMatriz(m1->i,m1->j);
-      for(i=0;i<(m1->i);i++)
+  int i,j;
+  
+      for(i=0;i<linha;i++)
       {
-        for(j=0;j<(m1->j);j++)
+        for(j=0;j<coluna;j++)
 	{
-	  novo->end[i][j]= m1->end[i][j]*m2->end[i][j];
+	 matR[i][j]= mat1[i][j]*mat2[i][j];
         }
       }
-      ret=inserir(novo,nomeResultado);
-      return ret;
-    }
-  }
+  return 1;
 }
 

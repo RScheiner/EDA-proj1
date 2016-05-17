@@ -138,7 +138,7 @@ int destroirMatriz(Lista **mat,char nome[])
 }
 
 /* Funcoes Aux*/
-Lista procuraMat(Lista *mat,char nome[])
+Lista *procuraMat(Lista *mat,char nome[])
 {
   Lista *atual=mat;
   while((atual) && (strcmp(atual->nome,nome)!=0))
